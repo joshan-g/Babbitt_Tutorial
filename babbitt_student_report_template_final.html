@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Babbitt Cu–Ni Deposit Report Template</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8e0ea;
+      --accent: #1f5fa8;
+      --accent-soft: #eaf2fb;
+      --head: #0f172a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow: auto;
+      padding: 28px 22px;
+      background: linear-gradient(180deg, #173a68 0%, #123155 100%);
+      color: #fff;
+    }
+
+    .sidebar h1 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .sidebar p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+    }
+
+    .sidebar .meta {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+    }
+
+    .sidebar .meta div + div { margin-top: 6px; }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc li { margin: 0 0 8px; }
+    .toc a {
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      display: block;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+      font-size: 0.95rem;
+    }
+    .toc a:hover { background: rgba(255,255,255,0.10); }
+
+    .content-wrap {
+      padding: 34px;
+    }
+
+    .paper {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .cover {
+      padding: 52px 56px 42px;
+      background: linear-gradient(180deg, #f7fbff 0%, #eef5fc 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cover .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .cover h2 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--head);
+    }
+
+    .cover p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 12px 20px;
+      margin-top: 28px;
+    }
+
+    .cover-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .cover-card strong {
+      display: block;
+      color: var(--head);
+      margin-bottom: 4px;
+      font-size: 0.92rem;
+    }
+
+    .main {
+      padding: 40px 56px 56px;
+    }
+
+    .note {
+      background: var(--accent-soft);
+      border: 1px solid #cfe0f5;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 0 0 30px;
+    }
+
+    h2.section-title {
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      color: var(--head);
+      font-size: 1.45rem;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      color: var(--head);
+      font-size: 1.08rem;
+    }
+
+    p, li { font-size: 0.98rem; }
+    ul { margin-top: 8px; }
+
+    .placeholder {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 24px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      text-align: left;
+      color: var(--head);
+    }
+
+    .figure-box {
+      margin: 16px 0 24px;
+      border: 1.5px dashed #b8c7d8;
+      background: #fafcff;
+      border-radius: 16px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+    }
+
+    .smallcaps {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .appendix {
+      background: #fbfcfe;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar {
+        position: relative;
+        height: auto;
+      }
+      .content-wrap { padding: 18px; }
+      .cover, .main { padding: 28px 22px; }
+      .cover-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .layout { display: block; }
+      .sidebar { display: none; }
+      .content-wrap { padding: 0; }
+      .paper {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .cover, .main { padding: 0; }
+      .figure-box { min-height: 120px; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>Babbitt Cu–Ni Deposit<br />Report Template</h1>
+      <p>Student-facing HTML template for the final geostatistical report.</p>
+
+      <div class="meta">
+        <div><strong>Course:</strong> MINE 420/552</div>
+        <div><strong>Focus:</strong> Resource estimation workflow</div>
+        <div><strong>Format:</strong> Technical report template</div>
+      </div>
+
+      <ul class="toc">
+        <li><a href="#use">How to Use This Template</a></li>
+        <li><a href="#summary">1. Executive Summary</a></li>
+        <li><a href="#intro">2. Introduction</a></li>
+        <li><a href="#data">3. Data Sources and Preparation</a></li>
+        <li><a href="#eda">4. Exploratory Data Analysis</a></li>
+        <li><a href="#variography">5. Spatial Continuity Analysis</a></li>
+        <li><a href="#blockmodel">6. Block Model Construction</a></li>
+        <li><a href="#kriging">7. Grade Estimation Methodology</a></li>
+        <li><a href="#results">8. Estimation Results</a></li>
+        <li><a href="#validation">9. Model Validation</a></li>
+        <li><a href="#discussion">10. Discussion</a></li>
+        <li><a href="#conclusions">11. Conclusions</a></li>
+        <li><a href="#recommendations">12. Recommendations</a></li>
+        <li><a href="#references">13. References</a></li>
+        <li><a href="#appendices">14. Appendices</a></li>
+      </ul>
+    </aside>
+
+    <div class="content-wrap">
+      <main class="paper">
+        <section class="cover">
+          <div class="kicker">MINE 420/552 Applied/Mining Geostatistics</div>
+          <h2>Final Report Template<br />Babbitt Cu–Ni Geostatistical Study</h2>
+          <p>
+            This HTML template is intended for the final student report based on the Babbitt Cu–Ni deposit tutorial.
+            It mirrors a professional technical report structure while remaining limited to the course workflow:
+            data preparation, exploratory data analysis, variography, block modeling, kriging, and validation.
+          </p>
+
+          <div class="cover-grid">
+            <div class="cover-card"><strong>Student Name</strong>[Insert name]</div>
+            <div class="cover-card"><strong>Student Number</strong>[Insert number]</div>
+            <div class="cover-card"><strong>Instructor</strong>Dr. Ilija (Eli) Miskovic</div>
+            <div class="cover-card"><strong>Software Used</strong>Julia</div>
+            <div class="cover-card"><strong>Submission Date</strong>[Insert date]</div>
+            <div class="cover-card"><strong>Report Type</strong>Technical geostatistical study</div>
+          </div>
+        </section>
+
+        <section class="main">
+          <div class="note" id="use">
+            <strong>How to use this template.</strong> Replace all bracketed text with your own content. Delete guidance notes before submission. Every table and figure should be discussed in the main body of the report.
+          </div>
+
+          <h2 class="section-title" id="summary">1. Executive Summary</h2>
+          <p class="placeholder">Write a concise summary of the report in one paragraph to one page. Briefly state the purpose of the study, the dataset used, the methods applied, the main estimation results, and the main conclusions and limitations.</p>
+
+          <h2 class="section-title" id="intro">2. Introduction</h2>
+          <h3>2.1 Purpose of the Study</h3>
+          <p class="placeholder">State the purpose of the report clearly. Example: this report presents a geostatistical study of the Babbitt Cu deposit, with the objective of analyzing spatial continuity and estimating grades in a block model using ordinary kriging.</p>
+
+          <h3>2.2 Scope and Limitations</h3>
+          <p class="placeholder">Explain what is included and what is excluded. This report should focus on drillhole data preparation, exploratory data analysis, spatial continuity analysis, block model setup, grade estimation, and validation. It is not a full mining, metallurgical, economic, or prefeasibility study.</p>
+
+          <h3>2.3 Study Area and Deposit Context</h3>
+          <p class="placeholder">Provide a brief description of the Babbitt deposit and the geologic setting relevant to the analysis.</p>
+
+          <h3>2.4 Report Organization</h3>
+          <p class="placeholder">Briefly describe how the report is structured.</p>
+
+          <h2 class="section-title" id="data">3. Data Sources and Preparation</h2>
+          <h3>3.1 Input Data</h3>
+          <p class="placeholder">Describe the collar, survey, assay, domain, and derived composite datasets used in the tutorial. Make it clear which variables are used for Cu estimation and which are used for Ni estimation.</p>
+
+          <table>
+            <thead>
+              <tr><th>Dataset</th><th>Format</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>[Collar file]</td><td>[CSV]</td><td>[Describe contents]</td></tr>
+              <tr><td>[Survey file]</td><td>[CSV]</td><td>[Describe contents]</td></tr>
+              <tr><td>[Assay file]</td><td>[CSV]</td><td>[Describe contents]</td></tr>
+              <tr><td>[Domain file]</td><td>[STL / other]</td><td>[Describe contents]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>3.2 Data Cleaning and Verification</h3>
+          <p class="placeholder">Discuss missing values, duplicate intervals, inconsistent identifiers, impossible assay values, survey issues, and coordinate verification.</p>
+
+          <h3>3.3 Compositing</h3>
+          <p class="placeholder">State the composite length used and explain why equal support was required.</p>
+
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Value</th><th>Comment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Original typical sample length</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Composite length</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Number of composites</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Support consistency</td><td>[yes/no]</td><td>[comment]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>3.4 Declustering (if used)</h3>
+          <p class="placeholder">Explain whether declustering was performed, why it was needed, and how the declustered mean compares with the naïve mean.</p>
+
+          <h2 class="section-title" id="eda">4. Exploratory Data Analysis</h2>
+          <div class="note">
+            <strong>Dual-variable reporting guidance.</strong> Since the final report now includes both Cu and Ni estimation, students should present the two variables in parallel wherever possible. This usually means paired tables, paired figures, or short comparison paragraphs rather than finishing all Cu analysis first and then repeating the full workflow for Ni.
+          </div>
+          <h3>4.1 Basic Descriptive Statistics</h3>
+          <p class="placeholder">Report the main descriptive statistics for both Cu and Ni, and for any other relevant variables if used.</p>
+
+          <table>
+            <thead>
+              <tr><th>Variable</th><th>Mean</th><th>Median</th><th>Std. Dev.</th><th>Maximum</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cu</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>[Other variable]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>4.2 Distribution Shape</h3>
+          <p class="placeholder">Discuss histogram shape, skewness, possible outliers, and whether transformation was considered or applied for both Cu and Ni.</p>
+          <div class="figure-box">Placeholder for Cu and Ni composite grade histograms</div>
+
+          <h3>4.3 Spatial Distribution of Data</h3>
+          <p class="placeholder">Describe drillhole and assay coverage, clustering, sparse areas, and spatial relationship to the domain. State whether Cu and Ni use the same informing composites or whether any variable-specific filtering was applied.</p>
+          <div class="figure-box">Placeholder for drillhole location map or spatial assay plot</div>
+
+          <h3>4.4 Implications for Estimation</h3>
+          <p class="placeholder">Interpret what the EDA results suggest about continuity, bias, representativeness, and uncertainty for both Cu and Ni.</p>
+
+          <h2 class="section-title" id="variography">5. Spatial Continuity Analysis</h2>
+          <div class="note">
+            <strong>Student guidance for Sections 5.2 and 5.3.</strong> In this part of the report, do not just show plots. Explain what the experimental variogram is measuring, how you constructed it, what the major features of the curve are, and how your fitted model translates those features into a form that can be used for kriging. Your goal is to show both computational understanding and geostatistical reasoning.
+          </div>
+          <h3>5.1 Conceptual Basis</h3>
+          <p class="placeholder">Briefly explain what the variogram represents and why it is essential for kriging. Since this report now includes both Cu and Ni, state whether the two variables were modeled separately and whether they showed different continuity behavior.</p>
+
+          <h3>5.2 Experimental Variograms</h3>
+          <p class="placeholder">Describe lag spacing, number of lags, directional setup, tolerance angles, and whether omnidirectional and directional variograms were used. Present this for both Cu and Ni.</p>
+
+          <div class="appendix">
+            <div class="smallcaps">Student Instruction Box — Section 5.2</div>
+            <strong>What this section should do.</strong>
+            <p>This section explains how you built the <em>experimental variogram</em> from the data. The purpose is to show how grade similarity changes with distance and direction. You are not fitting the model yet. You are first describing what the data itself says about spatial continuity.</p>
+            <p><strong>You should explain the following clearly:</strong></p>
+            <ul>
+              <li><strong>Lag definition:</strong> State the lag distance and the number of lags. Explain why that lag spacing was reasonable for the sample spacing and the scale of the deposit.</li>
+              <li><strong>Pair selection:</strong> Explain that each variogram point is based on sample pairs separated by a target distance interval. If relevant, mention that more pairs generally make the estimate more stable.</li>
+              <li><strong>Directional analysis:</strong> State whether you computed an omnidirectional variogram, directional variograms, or both. Explain why direction matters in geologic materials and what you were checking for.</li>
+              <li><strong>Tolerances and bandwidth:</strong> Report angular tolerance and bandwidth if used. Explain that these settings control which pairs are accepted into each directional variogram.</li>
+              <li><strong>Main observed features:</strong> Describe what you see on the plot. Discuss whether the curve shows a nugget, where it starts to level off, whether a sill is visible, and whether continuity changes with direction.</li>
+            </ul>
+            <p><strong>Do not just insert the variogram figure.</strong> You must interpret it. For example, if one direction has a longer range than another, explain that this suggests stronger continuity in that direction. If the first variogram point is high, explain that this may indicate a strong nugget effect, short-scale variability, or measurement noise.</p>
+            <p><strong>A strong response in this section answers these questions:</strong> What distances were tested? How were the pairs selected? What does the experimental variogram reveal about spatial continuity? Is there evidence of anisotropy?</p>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>Parameter</th><th>Value</th><th>Comment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lag distance</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Number of lags</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Azimuth(s)</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Dip(s)</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Angular tolerance</td><td>[value]</td><td>[comment]</td></tr>
+              <tr><td>Bandwidth</td><td>[value]</td><td>[comment]</td></tr>
+            </tbody>
+          </table>
+
+          <div class="figure-box">Placeholder for Cu and Ni experimental variogram figures</div>
+
+          <h3>5.3 Variogram Model Fitting</h3>
+          <p class="placeholder">State the selected variogram model type(s) and report nugget, sill, and range values for both Cu and Ni.</p>
+
+          <div class="appendix">
+            <div class="smallcaps">Student Instruction Box — Section 5.3</div>
+            <strong>What this section should do.</strong>
+            <p>This section explains how you converted the experimental variogram into a <em>mathematical variogram model</em> that can be used in kriging. The experimental points alone are not enough. Kriging requires a valid continuous model.</p>
+            <p><strong>You should explain the following clearly:</strong></p>
+            <ul>
+              <li><strong>Model type:</strong> State whether you used a spherical, exponential, Gaussian, or nested model. Explain why that model was appropriate for the shape of the experimental variogram.</li>
+              <li><strong>Nugget:</strong> Report the nugget value and explain what it represents in this study. This may reflect short-scale variability, sampling error, or measurement uncertainty.</li>
+              <li><strong>Sill:</strong> Report the sill and explain how it relates to overall variability.</li>
+              <li><strong>Range:</strong> Report the range and explain what it means physically. The range is the approximate distance over which samples remain spatially correlated.</li>
+              <li><strong>Nested structures:</strong> If you used more than one structure, explain why. For example, a short-range structure may capture local continuity while a second structure may capture broader-scale continuity.</li>
+              <li><strong>Anisotropy:</strong> If anisotropy was modeled, explain how it was incorporated. Report the directional ranges or anisotropy ratio and interpret them geologically.</li>
+            </ul>
+            <p><strong>Do not describe this section as curve fitting only.</strong> This section must connect the model parameters to geologic and spatial meaning. A high nugget, short range, or long range should all be interpreted in words.</p>
+            <p><strong>A strong response in this section answers these questions:</strong> Why was this model chosen? How well does it match the experimental variogram? What do the nugget, sill, and range imply about the deposit? How will this model affect kriging?</p>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>Structure</th><th>Nugget</th><th>Sill</th><th>Range</th><th>Comment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>[Structure 1]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>[Structure 2]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Total</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>5.4 Interpretation of Continuity</h3>
+          <p class="placeholder">Interpret short-range versus long-range continuity, nugget meaning, anisotropy, and the relation between variogram behavior and geology for both Cu and Ni. Comment on whether one variable appears smoother, noisier, or more anisotropic than the other.</p>
+
+          <h2 class="section-title" id="blockmodel">6. Block Model Construction</h2>
+          <h3>6.1 Model Extents and Block Size</h3>
+          <p class="placeholder">Describe the model origin, block dimensions, and number of blocks. Justify the selected block size.</p>
+
+          <table>
+            <thead>
+              <tr><th>Parameter</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Origin</td><td>[value]</td></tr>
+              <tr><td>Block size in X</td><td>[value]</td></tr>
+              <tr><td>Block size in Y</td><td>[value]</td></tr>
+              <tr><td>Block size in Z</td><td>[value]</td></tr>
+              <tr><td>Number of blocks in X</td><td>[value]</td></tr>
+              <tr><td>Number of blocks in Y</td><td>[value]</td></tr>
+              <tr><td>Number of blocks in Z</td><td>[value]</td></tr>
+              <tr><td>Domain constraint</td><td>[value]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>6.2 Domain Coding / Wireframe Constraint</h3>
+          <p class="placeholder">Explain how the mineralized domain was defined and how blocks were constrained to the domain.</p>
+          <div class="figure-box">Placeholder for block model and domain geometry figure</div>
+
+          <h2 class="section-title" id="kriging">7. Grade Estimation Methodology</h2>
+          <h3>7.1 Estimation Method</h3>
+          <p class="placeholder">State that ordinary kriging was used and explain why it is appropriate for this study. Make clear that both Cu and Ni were estimated, whether with the same search parameters or with variable-specific settings.</p>
+
+          <h3>7.2 Search Strategy</h3>
+          <p class="placeholder">Describe the search neighborhood, anisotropy, and sample selection rules. Indicate whether the same search setup was used for both Cu and Ni or whether the setup differed between variables.</p>
+
+          <table>
+            <thead>
+              <tr><th>Parameter</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Search radius / radii</td><td>[value]</td></tr>
+              <tr><td>Minimum number of samples</td><td>[value]</td></tr>
+              <tr><td>Maximum number of samples</td><td>[value]</td></tr>
+              <tr><td>Maximum samples per drillhole</td><td>[value]</td></tr>
+              <tr><td>Search anisotropy</td><td>[value]</td></tr>
+              <tr><td>Discretization</td><td>[value]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>7.3 Kriging Inputs</h3>
+          <ul class="placeholder">
+            <li>composited Cu and Ni values,</li>
+            <li>fitted variogram model,</li>
+            <li>domain-coded samples,</li>
+            <li>block centroids,</li>
+            <li>search parameters.</li>
+          </ul>
+
+          <h3>7.4 Estimation Assumptions</h3>
+          <p class="placeholder">State assumptions such as stationarity within domain, support consistency, and domain validity.</p>
+
+          <h2 class="section-title" id="results">8. Estimation Results</h2>
+          <h3>8.1 Spatial Distribution of Estimated Grades</h3>
+          <p class="placeholder">Present representative plan and/or section views of the estimated block grades for both Cu and Ni.</p>
+          <div class="figure-box">Placeholder for Cu and Ni estimated block grade figures</div>
+
+          <h3>8.2 Summary Statistics of the Estimated Model</h3>
+          <p class="placeholder">Compare global statistics of the informing data and the estimated blocks for both Cu and Ni.</p>
+
+          <table>
+            <thead>
+              <tr><th>Dataset</th><th>Variable</th><th>Mean</th><th>Std. Dev.</th><th>Maximum</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Composite data</td><td>Cu</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Composite data</td><td>Ni</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Declustered composite data</td><td>Cu</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Declustered composite data</td><td>Ni</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Estimated blocks</td><td>Cu</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+              <tr><td>Estimated blocks</td><td>Ni</td><td>[ ]</td><td>[ ]</td><td>[ ]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>8.3 Kriging Variance</h3>
+          <p class="placeholder">Explain what kriging variance means and what it does not mean. Do not describe it as the true estimation error. If kriging variance maps are shown for both Cu and Ni, briefly compare them.</p>
+          <div class="figure-box">Placeholder for Cu and Ni kriging variance figures</div>
+
+          <h2 class="section-title" id="validation">9. Model Validation</h2>
+          <h3>9.1 Visual Validation</h3>
+          <p class="placeholder">Discuss whether the model reproduces the main spatial patterns observed in the data and whether smoothing is evident for both Cu and Ni.</p>
+
+          <h3>9.2 Statistical Validation</h3>
+          <p class="placeholder">Discuss whether the estimated model has reasonable global statistics relative to the informing data for both Cu and Ni.</p>
+
+          <h3>9.3 Additional Validation Tests</h3>
+          <p class="placeholder">Describe and interpret any additional checks, such as swath plots, cross-validation, comparison of means, or section-based checks. If possible, compare Cu and Ni side by side. If a validation test was not performed, state that clearly.</p>
+
+          <h2 class="section-title" id="discussion">10. Discussion</h2>
+          <h3>10.1 Main Technical Findings</h3>
+          <p class="placeholder">Discuss what the results show about the deposit from a geostatistical perspective, using both Cu and Ni.</p>
+
+          <h3>10.2 Uncertainty and Limitations</h3>
+          <p class="placeholder">Address limitations such as data spacing, clustering, variogram uncertainty, domain uncertainty, smoothing due to kriging, and stationarity assumptions.</p>
+
+          <h3>10.3 Implications for Future Work</h3>
+          <p class="placeholder">Discuss next steps such as infill drilling, improved domain modeling, anisotropic variography, additional validation, or conditional simulation.</p>
+
+          <h2 class="section-title" id="conclusions">11. Conclusions</h2>
+          <p class="placeholder">Write a short, direct conclusion summarizing what was done, the most important Cu and Ni results, whether the models are reasonable, and the main source of uncertainty.</p>
+
+          <h2 class="section-title" id="recommendations">12. Recommendations</h2>
+          <p class="placeholder">List 3–6 technically meaningful recommendations. Keep them specific.</p>
+
+          <h2 class="section-title" id="references">13. References</h2>
+          <p class="placeholder">Use a consistent citation style. Include only sources actually used in the work.</p>
+          <ul>
+            <li>Isaaks, E. H., and Srivastava, R. M. 1989. <em>Applied Geostatistics</em>.</li>
+            <li>Journel, A. G., and Huijbregts, C. J. 1978. <em>Mining Geostatistics</em>.</li>
+            <li>Goovaerts, P. 1997. <em>Geostatistics for Natural Resources Evaluation</em>.</li>
+            <li>Course notes, tutorials, and lecture materials for MINE 420/552.</li>
+          </ul>
+
+          <h2 class="section-title" id="appendices">14. Appendices</h2>
+          <div class="appendix">
+            <div class="smallcaps">Appendix A</div>
+            <strong>Code and Workflow Notes</strong>
+            <p class="placeholder">Include a short workflow summary, key implementation details, or selected code excerpts.</p>
+          </div>
+
+          <div class="appendix">
+            <div class="smallcaps">Appendix B</div>
+            <strong>Additional Figures</strong>
+            <p class="placeholder">Place supplementary figures here if they are useful but not essential in the main text.</p>
+          </div>
+
+          <div class="appendix">
+            <div class="smallcaps">Appendix C</div>
+            <strong>Additional Tables</strong>
+            <p class="placeholder">Place supplementary tables here if needed.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
